@@ -1,0 +1,21 @@
+#include "led.h"
+
+#define GPIODEN (1U<<3)
+
+void led_init(void)
+{
+	/*Enable clock access for port D*/
+	RCC->AHB1ENR |= GPIODEN;
+	 /* Set LED pin as output*/
+
+}
+
+void led_on(void)
+{
+	/*set led on pin PD15*/
+}
+
+void led_off(void)
+{
+	/*set led on pin PD15*/
+}
