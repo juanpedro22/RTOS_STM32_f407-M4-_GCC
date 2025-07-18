@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := led_driver
+BUILD_ARTIFACT_NAME := UART_driver
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-led_driver.elf \
+UART_driver.elf \
 
 MAP_FILES += \
-led_driver.map \
+UART_driver.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-led_driver.list \
+UART_driver.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: led_driver.elf secondary-outputs
+main-build: UART_driver.elf secondary-outputs
 
 # Tool invocations
-led_driver.elf led_driver.map: $(OBJS) $(USER_OBJS) C:\Users\juanp\OneDrive\Documentos\RTOS_STM32_f407(M4)_GCC\led_driver\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "led_driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\juanp\OneDrive\Documentos\RTOS_STM32_f407(M4)_GCC\led_driver\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="led_driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+UART_driver.elf UART_driver.map: $(OBJS) $(USER_OBJS) C:\Users\juanp\OneDrive\Documentos\RTOS_STM32_f407(M4)_GCC\UART_driver\STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "UART_driver.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\juanp\OneDrive\Documentos\RTOS_STM32_f407(M4)_GCC\UART_driver\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-led_driver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "led_driver.list"
+UART_driver.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "UART_driver.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout led_driver.elf led_driver.list led_driver.map
+	-$(RM) UART_driver.elf UART_driver.list UART_driver.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
