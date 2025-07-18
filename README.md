@@ -1,3 +1,4 @@
 ## Board used:
 
-<img width="806" height="691" alt="image" src="https://github.com/user-attachments/assets/cbe80096-8924-435d-a773-f0277d1ef045" />
+<img width="599" height="648" alt="image" src="https://github.com/user-attachments/assets/ad6894cf-1b59-4e29-87f6-527628779fe8" />
+
