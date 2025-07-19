@@ -1,11 +1,13 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "uart.h"
 #include "stm32f4xx.h"
 
 #define MAX_BUFFER 100
 
+volatile char rx_buffer[MAX_BUFFER];
+volatile uint8_t rx_index = 0;
+volatile bool frase_completa = false;
 
 #define SYS_FREQ				16000000
 #define APB1_CLK				SYS_FREQ
@@ -23,15 +25,17 @@
 #define CR1_RXNEIE (1U << 5)     // RXNE interrupt enable
 #define SR_RXNE    (1U << 5)     // Receive buffer not empty
 
+volatile char rx_buffer[MAX_BUFFER];
+volatile uint8_t rx_index = 0;
+volatile bool frase_completa = false;
+
+
 
 static uint16_t compute_uart_bd(uint32_t periph_clk,uint32_t baudrate);
 static void uart_set_baudrate(uint32_t periph_clk,uint32_t baudrate);
 static void uart_write(int ch);
 void USART2_IRQHandler(void);
 
-volatile char rx_buffer[MAX_BUFFER];
-volatile uint8_t rx_index = 0;
-volatile bool frase_completa = false;
 
 int __io_putchar(int ch)
 {

@@ -1,10 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <stdbool.h>
 #include "uart.h"
 #include "stm32f4xx.h"
-
-#define MAX_BUFFER 100
 
 
 #define SYS_FREQ				16000000
@@ -23,15 +20,10 @@
 #define CR1_RXNEIE (1U << 5)     // RXNE interrupt enable
 #define SR_RXNE    (1U << 5)     // Receive buffer not empty
 
-
 static uint16_t compute_uart_bd(uint32_t periph_clk,uint32_t baudrate);
 static void uart_set_baudrate(uint32_t periph_clk,uint32_t baudrate);
 static void uart_write(int ch);
-void USART2_IRQHandler(void);
 
-volatile char rx_buffer[MAX_BUFFER];
-volatile uint8_t rx_index = 0;
-volatile bool frase_completa = false;
 
 int __io_putchar(int ch)
 {
@@ -95,32 +87,4 @@ static uint16_t compute_uart_bd(uint32_t periph_clk,uint32_t baudrate)
 static void uart_set_baudrate(uint32_t periph_clk,uint32_t baudrate)
 {
 	USART2->BRR = compute_uart_bd(periph_clk,baudrate);
-}
-
-void USART2_IRQHandler(void)
-{
-    if (USART2->SR & SR_RXNE)
-    {
-        char c = USART2->DR;
-
-        // Se buffer não estourou
-        if (rx_index < MAX_BUFFER - 1)
-        {
-            if (c == '\r' || c == '\n')  // fim de frase
-            {
-                rx_buffer[rx_index] = '\0';  // finaliza a string
-                rx_index = 0;
-                frase_completa = true;
-            }
-            else
-            {
-                rx_buffer[rx_index++] = c;
-            }
-        }
-        else
-        {
-            // buffer cheio, reseta (ou pode sinalizar erro)
-            rx_index = 0;
-        }
-    }
 }

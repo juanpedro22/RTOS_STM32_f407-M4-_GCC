@@ -5,7 +5,7 @@
 
 void uart_tx_init(void);
 
-
+// Defina aqui antes de usar
 #define MAX_BUFFER 100
 
 extern volatile char rx_buffer[MAX_BUFFER];
