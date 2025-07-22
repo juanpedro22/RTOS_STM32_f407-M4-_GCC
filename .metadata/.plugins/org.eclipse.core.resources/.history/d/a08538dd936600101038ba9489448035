@@ -103,29 +103,24 @@ void USART2_IRQHandler(void)
     {
         char c = USART2->DR;
 
-        // Ignora múltiplos delimitadores
-        static bool esperando_lf = false;
-
-        if (esperando_lf && c == '\n') {
-            esperando_lf = false;
-            return;
-        }
-
-        if (c == '\r' || c == '\n') {
-            rx_buffer[rx_index] = '\0';
-            frase_completa = true;
-            rx_index = 0;
-
-            if (c == '\r')
-                esperando_lf = true;
-        }
-        else {
-            if (rx_index < MAX_BUFFER - 1) {
-                rx_buffer[rx_index++] = c;
-            } else {
-                rx_index = 0; // Buffer cheio, resetar
+        // Se buffer não estourou
+        if (rx_index < MAX_BUFFER - 1)
+        {
+            if (c == '\r' || c == '\n')  // fim de frase
+            {
+                rx_buffer[rx_index] = '\0';  // finaliza a string
+                rx_index = 0;
+                frase_completa = true;
             }
+            else
+            {
+                rx_buffer[rx_index++] = c;
+            }
+        }
+        else
+        {
+            // buffer cheio, reseta (ou pode sinalizar erro)
+            rx_index = 0;
         }
     }
 }
-

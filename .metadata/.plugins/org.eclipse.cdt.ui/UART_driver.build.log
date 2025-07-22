@@ -1,18 +1,10 @@
-21:45:34 **** Incremental Build of configuration Debug for project UART_driver ****
+21:36:39 **** Incremental Build of configuration Debug for project UART_driver ****
 make -j4 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -DSTM32F407xx -c -I../Inc -I"C:/Users/juanp/OneDrive/Documentos/RTOS_STM32_f407(M4)_GCC/UART_driver/chip_headers/CMSIS/Include" -I"C:/Users/juanp/OneDrive/Documentos/RTOS_STM32_f407(M4)_GCC/UART_driver/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
-arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -DSTM32F407xx -c -I../Inc -I"C:/Users/juanp/OneDrive/Documentos/RTOS_STM32_f407(M4)_GCC/UART_driver/chip_headers/CMSIS/Include" -I"C:/Users/juanp/OneDrive/Documentos/RTOS_STM32_f407(M4)_GCC/UART_driver/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
-arm-none-eabi-gcc -o "UART_driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\juanp\OneDrive\Documentos\RTOS_STM32_f407(M4)_GCC\UART_driver\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART_driver.elf
- 
 arm-none-eabi-size  UART_driver.elf 
-arm-none-eabi-objdump -h -S UART_driver.elf  > "UART_driver.list"
    text	   data	    bss	    dec	    hex	filename
-   5472	     92	   2004	   7568	   1d90	UART_driver.elf
+   5508	     92	   2004	   7604	   1db4	UART_driver.elf
 Finished building: default.size.stdout
  
-Finished building: UART_driver.list
- 
 
-21:45:35 Build Finished. 0 errors, 0 warnings. (took 1s.142ms)
+21:36:40 Build Finished. 0 errors, 0 warnings. (took 284ms)
 
