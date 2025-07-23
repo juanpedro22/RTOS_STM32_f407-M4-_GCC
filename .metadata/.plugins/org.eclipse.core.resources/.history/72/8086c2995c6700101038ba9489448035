@@ -1,0 +1,6 @@
+#ifndef __TIMEBAE_H__
+#define __TIMEBAE_H__
+
+#include <stdint.h>
+
+#endif

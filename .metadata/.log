@@ -130,3 +130,8 @@ localhost:61234: Connection timed out.
 java.lang.Exception: localhost:61234: Connection timed out.
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:1024)
 	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:853)
+
+!ENTRY org.eclipse.core.resources 2 2 2025-07-22 21:13:32.808
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-07-22 21:13:32.810
+!MESSAGE The project description file (.project) for 'led_driver' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
